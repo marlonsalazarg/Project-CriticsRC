@@ -1,0 +1,54 @@
+<%= form_with(model: game) do |form| %>
+  <% if game.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+        <% game.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :summary, style: "display: block" %>
+    <%= form.text_area :summary %>
+  </div>
+
+  <div>
+    <%= form.label :release_date, style: "display: block" %>
+    <%= form.date_field :release_date %>
+  </div>
+
+  <div>
+    <%= form.label :rating, style: "display: block" %>
+    <%= form.text_field :rating %>
+  </div>
+
+  <div class="select">
+    <%= form.label :category, class:"content-xs overline"%>
+    <%= form.select :category, Game.categories.keys, { prompt: true }, { class: "select__input" } %>
+    <%=errors_for(game, :category) %>
+  </div>
+
+  <div class="select">
+    <%= form.label :parent_id, class:"content-xs overline"%>
+    <%= form.collection_select :parent_id, Game.main_game, :id, :name, { include_blank: "Please select" }, { class: "select__input" } %>
+    <%=errors_for(game, :parent_id) %>
+  </div>
+
+  <div style="margin-bottom:16px">
+    <%= form.label :cover, style: "display: block" %>
+    <%= form.file_field :cover %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

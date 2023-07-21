@@ -1,0 +1,67 @@
+<p style="color: green"><%= notice %></p>
+  
+
+
+<%= render @game %>
+
+<div>
+  <p>
+    <strong>Summary:</strong>
+     <%= @game.summary %>
+  </p>
+    <strong>Genres:</strong>
+    <ul>
+      <% @game.genres.each do |genre| %>
+      <li><%= genre.name%> | <%= link_to 'remove', remove_genre_game_path(@game, genre_id: genre.id), data: { turbo_method: :delete }  %></li>
+      <% end %>
+      <li>
+        <%= form_with(url: add_genre_game_path(@game), class: "flex flex-column gap-4 flex-row") do |form| %>
+          <div class="flex gap-4">
+            <div class="select">
+              <%= form.collection_select :genre_id, (Genre.all - @game.genres), :id, :name, { prompt: true }, { class: "select__input" } %>
+            </div>
+          </div>
+          <%= form.submit "Add genre", class: "button button--primary fit-content" %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <strong>Platforms:</strong>
+    <ul>
+      <% @game.platforms.each do |platform| %>
+      <li><%= platform.name%> | <%= link_to 'remove', remove_platform_game_path(@game, platform_id: platform.id), data: { turbo_method: :delete }  %></li>
+      <% end %>
+      <li>
+        <%= form_with(url: add_platform_game_path(@game), class: "flex flex-column gap-4 flex-row") do |form| %>
+          <div class="flex gap-4">
+            <div class="select">
+              <%= form.collection_select :platform_id, (Platform.all - @game.platforms), :id, :name, { prompt: true }, { class: "select__input" } %>
+            </div>
+          </div>
+          <%= form.submit "Add platform", class: "button button--primary fit-content" %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="margin_block_start">
+        <%= form_with(url: add_developer_game_path(@game)) do |form| %>
+          <%= form.collection_select :company_id, (Company.all), :id, :name, { prompt: true }%>
+          <%= form.submit "ADD DEVELOPER"%>
+        <% end %>
+      </div>
+
+  <div class="margin_block_start">
+    <%= form_with(url: add_publisher_game_path(@game)) do |form| %>
+      <%= form.collection_select :company_id, (Company.all), :id, :name, { prompt: true }%>
+      <%= form.submit "ADD PUBLISHER"%>
+    <% end %>
+  </div>
+
+  <%= link_to "Edit this game", edit_game_path(@game) %> |
+  <%= link_to "Back to games", games_path %>
+
+  <%= button_to "Destroy this game", @game, method: :delete %>
+</div>

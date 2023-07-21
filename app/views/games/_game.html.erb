@@ -1,0 +1,38 @@
+<div id="<%= dom_id game %>">
+  <% if game.cover.attached? %>
+    <div>
+      <%= image_tag game.cover, alt:"game cover", style: "width:80px" %>
+    </div>
+  <% end %>
+
+  <p>
+    <strong>Name:</strong>
+    <%= game.name %>
+  </p>
+
+  <p>
+    <strong>Release date:</strong>
+    <%= game.release_date %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= game.category %>
+  </p>
+
+  <p>
+    <strong>Rating:</strong>
+    <%= game.rating %>
+  </p>
+
+  <p>
+    <strong>Parent:</strong>
+    <%= game.parent_id %>
+  </p>
+
+  <p>
+    <strong>Critics:</strong>
+    <%= game.critics.count %>
+  </p>
+  
+</div>
