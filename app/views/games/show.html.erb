@@ -46,19 +46,55 @@
     </ul>
   </div>
 
-  <div class="margin_block_start">
+  <div>
+        <strong>Developers</strong>
+        <div class="labels_group">
+          <% @game.involved_companies.where(developer: true).each do |ic| %>
+            <div class="label">
+              <%= ic.company.name %> | <%= link_to 'X', remove_developer_game_path(@game, company_id: ic.id), data: { turbo_method: :delete } %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div>
+        <strong>Publishers</strong>
+        <div class="labels_group">
+          <% @game.involved_companies.where(publisher: true).each do |ic| %>
+          <div class="label">
+            <%= ic.company.name %> | <%= link_to 'X', remove_publisher_game_path(@game, company_id: ic.id), data: { turbo_method: :delete } %>
+          </div>
+          <% end %>
+        </div>
+  </div>
+
+  <div class="span_desing">
         <%= form_with(url: add_developer_game_path(@game)) do |form| %>
           <%= form.collection_select :company_id, (Company.all), :id, :name, { prompt: true }%>
           <%= form.submit "ADD DEVELOPER"%>
         <% end %>
       </div>
 
-  <div class="margin_block_start">
+  <div class="span_desing">
     <%= form_with(url: add_publisher_game_path(@game)) do |form| %>
       <%= form.collection_select :company_id, (Company.all), :id, :name, { prompt: true }%>
       <%= form.submit "ADD PUBLISHER"%>
     <% end %>
   </div>
+
+  <div class="critics__tab-game">
+    <h1>Toogle Critics</h1>
+    <strong>Critics</strong>
+    <%@game.critics.each do |critic|%>
+      <%=critic.title%>
+      <%=critic.body%>
+      <%=critic.user.username%>
+    <%end%>
+  </div>
+
+  <h3>Feedbacks</h3>
+  <%= render "critics/form", { critic: Critic.new, criticable: @game} %>
+
 
   <%= link_to "Edit this game", edit_game_path(@game) %> |
   <%= link_to "Back to games", games_path %>
