@@ -22,6 +22,9 @@ class GamesController < ApplicationController
   # POST /games
   def create
     @game = Game.new(game_params)
+    if !@game.cover.attached?
+      @game.cover.attach(io: File.open("app/assets/images/tlou_cover.jpg"), filename: "default_cover.jpg")
+    end
 
     if @game.save
       redirect_to @game, notice: "Game was successfully created."

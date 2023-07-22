@@ -37,7 +37,7 @@ class CriticsController < ApplicationController
     @critic = criticable.critics.new(critic_params)
 
     if @critic.save
-      redirect_to @critic
+      redirect_to criticable
     else
       render :new, status: :unprocessable_entity
     end
@@ -57,8 +57,14 @@ class CriticsController < ApplicationController
   # DELETE /critics/:id
   def destroy
     @critic = Critic.find(params[:id])
+    type = @critic.criticable_type
     @critic.destroy
-    redirect_to critics_path, status: :see_other
+    
+    if type == "Game"
+      redirect_to game_path(@critic.criticable_id), status: :see_other
+    elsif type == "Company"
+      redirect_to company_path(@critic.criticable_id), status: :see_other
+    end
   end
 
   private
