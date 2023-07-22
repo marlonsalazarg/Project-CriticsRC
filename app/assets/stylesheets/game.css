@@ -1,0 +1,60 @@
+.game-card {
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  gap: 1em;
+  height: 200px;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.game-card__content {
+  padding: 0.5em 1em;
+  width: 70%;
+}
+
+.header_card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.game-card__image {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.cover_game-widht{
+  width: 30%;
+}
+
+.rating {
+  background-color: var(--gray-200);
+  width: 34px;
+  height: 24px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.footer_card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer_card img{
+  margin: 5px;
+}
+
+/* COMMENTS CAMBIAR DE RUTA */
+.critic-card__footer{
+  justify-content: space-between;
+}
