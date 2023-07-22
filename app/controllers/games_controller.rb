@@ -83,14 +83,54 @@ class GamesController < ApplicationController
     redirect_to game, status: :see_other
   end
 
+  def add_developer
+    company = Company.find(params[:company_id])
+    game = Game.find(params[:id])
+    game.involved_companies.create(developer: true, publisher: false, company: company)
+    redirect_to game
+  end
+
+  def add_publisher
+    company = Company.find(params[:company_id])
+    game = Game.find(params[:id])
+    game.involved_companies.create(developer: false, publisher: true, company: company)
+    redirect_to game
+  end
+
+  def remove_developer
+    company = InvolvedCompany.find(params[:company_id])
+    game = Game.find(params[:id])
+    game.involved_companies.delete(company)
+    redirect_to games_path
+  end
+
+  def remove_publisher
+    company = InvolvedCompany.find(params[:company_id])
+    game = Game.find(params[:id])
+    game.involved_companies.delete(company)
+    redirect_to games_path
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_game
+     # Use callbacks to share common setup or constraints between actions.
+     def set_game
       @game = Game.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.require(:game).permit(:name, :summary, :release_date, :category, :rating, :parent_id, :cover)
+      params.require(:game).permit(:name, :summary, :release_date, :category, :rating, :cover)
+    end
+
+    def genre_params
+      params.require(:genre).permit(:id, :name)
+    end
+
+    def  platform_params
+      params.require(:platform).permit(:id, :name)
+    end
+
+    def involved_companies_params
+      params.require(:involved_company).permit(:id, :name)
     end
 end
