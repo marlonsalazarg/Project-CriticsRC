@@ -11,14 +11,12 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="input__container mb-4">
+    <%= form.text_field :title,placeholder: "Critic title ...", class: "input__content" %>
   </div>
 
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
+  <div class="input__container mb-4">
+    <%= form.text_area :body,placeholder: "Critic body ...", class: "input__content" %>
   </div>
 
   <div>
@@ -36,6 +34,6 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "button button--secondary button--with" %>
   </div>
 <% end %>
