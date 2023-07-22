@@ -35,6 +35,7 @@ class CriticsController < ApplicationController
     criticable = Company.find(params[:company_id]) if params[:company_id]
 
     @critic = criticable.critics.new(critic_params)
+    @critic.user = current_user
 
     if @critic.save
       redirect_to criticable
@@ -71,6 +72,6 @@ class CriticsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def critic_params
-    params.require(:critic).permit(:title, :body, :user_id)
+    params.require(:critic).permit(:title, :body)
   end
 end

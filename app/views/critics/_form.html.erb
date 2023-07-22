@@ -19,11 +19,11 @@
     <%= form.text_area :body,placeholder: "Critic body ...", class: "input__content" %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
+  <%# <div> %>
+    <%# <%= form.label :user_id, style: "display: block" %>
     <%# <%= form.text_field :user_id %>
-    <%= form.collection_select :user_id, User.order(:username), :id, :username %>
-  </div>
+    <%# <%= form.collection_select :user_id, User.order(:username), :id, :username %>
+  <%# </div> %>
 
   <div>
     <%= form.text_field :criticable_id, hidden: true %>
