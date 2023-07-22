@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  post "/new_user", to: "users#create"
   resources :users
   resources :genres
   resources :platforms

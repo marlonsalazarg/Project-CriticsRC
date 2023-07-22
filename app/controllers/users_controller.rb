@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # POST /users
+  # POST /new_user
   def create
     @user = User.new(user_params)
 
@@ -53,6 +53,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :email, :role, :critics_count)
+      params.require(:user).permit(:username, :email, :role, :critics_count, :password)
     end
 end
