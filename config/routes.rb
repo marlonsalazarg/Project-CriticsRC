@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :users
   resources :genres
   resources :platforms
-  resources :critics
+  resources :critics, only: [:create, :destroy]
   # resources :involved_companies
   resources :games do
     # /games/:id/add_genre
