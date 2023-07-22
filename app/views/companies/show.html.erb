@@ -3,6 +3,13 @@
 <%= render @company %>
 
 <div>
+  
+  <p>
+    <strong>Games:</strong>
+    <%@company.games.each do |game| %>
+      <%= link_to game.name, game %>
+    <%end%>
+  </p>
   <%= link_to "Edit this company", edit_company_path(@company) %> |
   <%= link_to "Back to companies", companies_path %>
 
