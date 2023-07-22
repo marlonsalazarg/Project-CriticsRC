@@ -45,6 +45,11 @@
 
   <div style="margin-bottom:16px">
     <%= form.label :cover, style: "display: block" %>
+    <% if game.cover.attached? %>
+    <div>
+      <%= image_tag game.cover, alt:"game cover", style: "width:80px" %>
+    </div>
+    <% end %>
     <%= form.file_field :cover %>
   </div>
 
