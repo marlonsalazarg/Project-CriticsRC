@@ -11,6 +11,24 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="container">
+        <div class="header navbar shadow--gray">
+          <%=link_to image_tag("logo.png"), games_path%>
+        </div>
+      </div>
+    </header>
+    <section class="section">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer__content">
+        <h4>© 2023 - Codeable Critics</h4> 
+        <h4>Build with ♥ by</h4>
+        <p>♤Marlon Salazar</p>
+      </div>
+    </footer>
   </body>
 </html>
