@@ -1,6 +1,8 @@
 class Game < ApplicationRecord
   # Validations
   validates :name, :category, presence: true
+  before_create :default_cover
+  validates :release_date, presence: true
   validates :name, uniqueness: true
   validates :rating,
             numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 },
@@ -30,4 +32,12 @@ class Game < ApplicationRecord
 
   has_many :critics, as: :criticable, dependent: :destroy
   has_one_attached :cover
+
+  private
+
+  def default_cover
+    return if cover.attached?
+    
+    cover.attach(io: File.open("app/assets/images/tlou_cover.jpg"), filename: "default_cover.jpg")
+  end
 end
