@@ -1,38 +1,40 @@
 <div id="<%= dom_id game %>">
-  <% if game.cover.attached? %>
-    <div>
-      <%= image_tag game.cover, alt:"game cover", style: "width:80px" %>
+<div class="card-list">
+  <div class="game-card mb-4 bg-gray-100">
+    <% if game.cover.attached? %>
+    <div class="cover_game-widht">
+      <%= image_tag game.cover, alt:"game cover", class: "game-card__image" %>
     </div>
-  <% end %>
+    <% end %>
+    <div class="game-card__content">
+      <div class="header_card">
+        <h4>
+          <%= link_to game.name, game %>
+        </h4>
+        <span class="content-lg rating"><%=  game.rating  %></span>
+      </div>
+      
+      <p>
+        <%= game.release_date.strftime('%Y') %>
+      </p>
+      <p>
+        <%# <strong>Summary:</strong> %>
+        <p class="content-sm"><%= truncate(game.summary, length: 100) %></p>
+      </p>
 
-  <p>
-    <strong>Name:</strong>
-    <%= game.name %>
-  </p>
+      <div class="footer_card">
+        <div>
+          <%=game.critics.count %>
+          <strong>Critics</strong>
+        </div>
+        <div class="flex fle-row">
+          <%=link_to(image_tag('update_icon.png'), edit_game_path(game))%>
+          <%=link_to(image_tag('delete_icon.png'), game_path(game), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"})%>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
-  <p>
-    <strong>Release date:</strong>
-    <%= game.release_date %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= game.category %>
-  </p>
-
-  <p>
-    <strong>Rating:</strong>
-    <%= game.rating %>
-  </p>
-
-  <p>
-    <strong>Parent:</strong>
-    <%= game.parent_id %>
-  </p>
-
-  <p>
-    <strong>Critics:</strong>
-    <%= game.critics.count %>
-  </p>
-  
 </div>
