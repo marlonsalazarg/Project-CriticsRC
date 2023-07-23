@@ -43,8 +43,10 @@
               <strong>Critics</strong>
             </div>
             <div class="flex flex-row">
-              <%=link_to(image_tag('update_icon.png'), edit_game_path(game))%>
-              <%=link_to(image_tag('delete_icon.png'), game_path(game), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"})%>
+              <% if policy(Company).new?%>
+                <%=link_to(image_tag('update_icon.png'), edit_game_path(game))%>
+                <%=link_to(image_tag('delete_icon.png'), game_path(game), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"})%>
+              <%end%>
             </div>
           </div>
           
@@ -68,7 +70,9 @@
         </div>
         <div class="critic-card__footer footer_card">
           <span class="gray-300"><%='Sent '+time_ago_in_words(critic.created_at)+' ago'%></span>
-          <%=link_to image_tag('delete_icon.png'), critic, data: { turbo_method: :delete } %>
+          <% if policy(Company).new?%>
+            <%=link_to image_tag('delete_icon.png'), critic, data: { turbo_method: :delete } %>
+          <%end%>
         </div>
       <%end%>
     </div>    
