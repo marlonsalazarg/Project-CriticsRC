@@ -29,11 +29,11 @@ Platform.create(name: "Nintendo Switch", category: 4)
 Platform.create(name: "iOS", category: 3)
 
 # Create Companies
-Company.create(name: "Nintendo", country: "Japan")
-Company.create(name: "Rockstar Games", country: "USA")
-Company.create(name: "Electronic Arts", country: "USA")
-Company.create(name: "Sony Interactive Entertainment", country: "Japan")
-Company.create(name: "Microsoft Studios", country: "USA")
+Company.create(name: "Nintendo", country: "Japan",start_date: "1990-09-09" , description: "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt")
+Company.create(name: "Rockstar Games", country: "USA",start_date: "1990-09-09" , description: "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt")
+Company.create(name: "Electronic Arts", country: "USA",start_date: "1990-09-09" , description: "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt")
+Company.create(name: "Sony Interactive Entertainment", country: "Japan",start_date: "1990-09-09" , description: "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt")
+Company.create(name: "Microsoft Studios", country: "USA",start_date: "1990-09-09" , description: "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt")
 
 # Create Games
 Game.create(name: "Grand Theft Auto V",release_date: "1990-09-09" , summary: "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt", rating: 9.4, category: 0)
