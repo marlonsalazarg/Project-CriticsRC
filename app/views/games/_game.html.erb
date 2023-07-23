@@ -27,7 +27,7 @@
           <%=game.critics.count %>
           <strong>Critics</strong>
         </div>
-        <div class="flex fle-row">
+        <div class="flex flex-row">
           <%=link_to(image_tag('update_icon.png'), edit_game_path(game))%>
           <%=link_to(image_tag('delete_icon.png'), game_path(game), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"})%>
         </div>

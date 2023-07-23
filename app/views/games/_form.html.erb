@@ -13,22 +13,30 @@
 
   <div>
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <div class="input__container mb-4">
+      <%= form.text_field :name, class: "input__content" %>
+    </div>
   </div>
 
   <div>
     <%= form.label :summary, style: "display: block" %>
-    <%= form.text_area :summary %>
+    <div class="input__container mb-4">
+      <%= form.text_area :summary, class: "input__content" %>
+    </div>
   </div>
 
   <div>
     <%= form.label :release_date, style: "display: block" %>
-    <%= form.date_field :release_date %>
+    <div class="input__container mb-4">
+      <%= form.date_field :release_date, class: "input__content" %>
+    </div>
   </div>
 
   <div>
     <%= form.label :rating, style: "display: block" %>
-    <%= form.text_field :rating %>
+    <div class="input__container mb-4">
+      <%= form.text_field :rating, class: "input__content" %>
+    </div>
   </div>
 
   <div class="select">
