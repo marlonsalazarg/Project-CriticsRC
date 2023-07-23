@@ -9,28 +9,3 @@
     background-color: #fff;
     box-shadow: 0 0 10px #e6e6e6;
 }
-
-/* Estilos para el botón de hamburguesa */
-.navbar--links{
-    flex-direction: column;
-    width: 100%;
-    display: none;
-}
-.navbar--links :last-child{
-    width: 100%;
-}
-.menu-bars{
-    display: flex;
-    cursor: pointer;
-}
-
-.navbar-mobile--open {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.navbar-mobile--open a{
-    color: blue;
-}
