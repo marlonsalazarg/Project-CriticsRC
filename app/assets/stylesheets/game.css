@@ -1,0 +1,88 @@
+.game-card {
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  gap: 1em;
+  height: 200px;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.game-card__content {
+  padding: 0.5em 1em;
+  width: 70%;
+}
+
+.header_card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.game-card__image {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.cover_game-widht{
+  width: 30%;
+}
+
+.show_top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: var(--gray-200);
+  width: 34px;
+  height: 24px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.footer_card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer_card img{
+  margin: 5px;
+}
+
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.label{
+  display: flex;
+  padding: 0px 8px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: var(--gray-200);
+  font-size: 16px;
+  margin: 5px;
+  text-shadow: 1px 1px 1px var(--gray-400);
+}
+
+/* COMMENTS CAMBIAR DE RUTA */
+.critic-card__footer{
+  justify-content: space-between;
+}

@@ -1,0 +1,79 @@
+<div>
+  <div class="show_top">
+    <div class="cover_game-100">
+      <%= image_tag @company.cover, alt:"company cover", style: "width: 300px; height: 337px; object-fit: contain;" %>
+    </div>
+  </div>
+  <h1><%=@company.name%></h1>
+  <span>
+    <%= @company.start_date.strftime('%Y') %> -
+    <%= @company.country %>
+  </span>
+  <div class="details__tab-game">
+    <h4>Company Details</h4>
+    <p><%=@company.description%></p>    
+    <strong>Games (<%= @company.games_count %>) </strong>
+    <%@company.games.each do |game| %>
+      <div class="card-list">
+      <div class="game-card mb-4 bg-gray-100">
+        <% if game.cover.attached? %>
+        <div class="cover_game-widht">
+          <%= image_tag game.cover, alt:"game cover", class: "game-card__image" %>
+        </div>
+        <% end %>
+        <div class="game-card__content">
+          <div class="header_card">
+            <h4>
+              <%= link_to game.name, game %>
+            </h4>
+            <span class="content-lg rating"><%=  game.rating  %></span>
+          </div>
+          
+          <p>
+            <%= game.release_date.strftime('%Y') %>
+          </p>
+          <p>
+            <%# <strong>Summary:</strong> %>
+            <p class="content-sm"><%= truncate(game.summary, length: 100) %></p>
+          </p>
+
+          <div class="footer_card">
+            <div>
+              <%=game.critics.count %>
+              <strong>Critics</strong>
+            </div>
+            <div class="flex flex-row">
+              <%=link_to(image_tag('update_icon.png'), edit_game_path(game))%>
+              <%=link_to(image_tag('delete_icon.png'), game_path(game), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"})%>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <%end%>
+  </div>
+
+  <div class="critics__tab-game mb-4">
+    <h3>critics</h3>
+    <%# <strong>Critics (<%= @company.critics_count ) </strong> %>
+    <%= render "critics/form", { critic: Critic.new, criticable: @company} %>
+    <%@company.critics.each do |critic|%>
+      <div class="comment-card">
+        <div class="comment-card__details">
+          <hr>
+          <h4><%=critic.title%> </h4>
+          <span>by <%=critic.user.username%></span> <br>
+          <%=critic.body%>
+        </div>
+        <div class="critic-card__footer footer_card">
+          <span class="gray-300"><%='Sent '+time_ago_in_words(critic.created_at)+' ago'%></span>
+          <%=link_to image_tag('delete_icon.png'), critic, data: { turbo_method: :delete } %>
+        </div>
+      <%end%>
+    </div>    
+  </div>
+
+  <%= link_to "Back", companies_path, class: "button button--subtle" %>
+
+</div>
