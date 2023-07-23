@@ -36,6 +36,12 @@
   width: 30%;
 }
 
+.show_top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .rating {
   display: flex;
   justify-content: center;
@@ -56,6 +62,24 @@
 
 .footer_card img{
   margin: 5px;
+}
+
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.label{
+  display: flex;
+  padding: 0px 8px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: var(--gray-200);
+  font-size: 16px;
+  margin: 5px;
+  text-shadow: 1px 1px 1px var(--gray-400);
 }
 
 /* COMMENTS CAMBIAR DE RUTA */
