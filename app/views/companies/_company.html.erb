@@ -1,34 +1,36 @@
 <div id="<%= dom_id company %>">
+  <div class="card-list">
+    <div class="game-card mb-4 bg-gray-100">
+      <% if company.cover.attached? %>
+        <div class="cover_game-widht">
+          <%= image_tag company.cover, alt:"company cover", class: "game-card__image" %>
+        </div>
+      <% end %>
 
-  <% if company.cover.attached? %>
-    <div>
-      <%= image_tag company.cover, alt:"company cover", style: "width:80px" %>
+      <div class="game-card__content">
+        <div class="header_card">
+          <%= link_to company.name, company %>
+        </div>
+          <span>
+            <%= company.start_date.strftime('%Y') %> -
+            <%= company.country %>
+          </span>
+          <p>
+            <strong>Description:</strong>
+            <%= truncate(company.description, length: 100)%>
+          </p>
+
+          <div class="footer_card">
+            <div>
+              <%= company.games_count %>
+              <strong>Games</strong>
+            </div>
+            <div class="flex flex-row">
+              <%=link_to(image_tag('update_icon.png'), edit_company_path(company))%>
+              <%=link_to(image_tag('delete_icon.png'), company_path(company), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"})%>
+            </div>
+          </div>
+      </div>
     </div>
-  <% end %>
-
-  <p>
-    <strong>Name:</strong>
-    <%= company.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= company.description %>
-  </p>
-
-  <p>
-    <strong>Start date:</strong>
-    <%= company.start_date %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= company.country %>
-  </p>
-
-  <p>
-    <strong>Games count:</strong>
-    <%= company.games_count %>
-  </p>
-
+  </div>
 </div>
