@@ -1,10 +1,46 @@
 <%= render @company %>
 <div>
   
-  <p>
-    <strong>Games:</strong>
+  <p>        
+    <strong>Games (<%= @company.games_count %>) </strong>
     <%@company.games.each do |game| %>
-      <%= link_to game.name, game %>
+      <div class="card-list">
+      <div class="game-card mb-4 bg-gray-100">
+        <% if game.cover.attached? %>
+        <div class="cover_game-widht">
+          <%= image_tag game.cover, alt:"game cover", class: "game-card__image" %>
+        </div>
+        <% end %>
+        <div class="game-card__content">
+          <div class="header_card">
+            <h4>
+              <%= link_to game.name, game %>
+            </h4>
+            <span class="content-lg rating"><%=  game.rating  %></span>
+          </div>
+          
+          <p>
+            <%= game.release_date.strftime('%Y') %>
+          </p>
+          <p>
+            <%# <strong>Summary:</strong> %>
+            <p class="content-sm"><%= truncate(game.summary, length: 100) %></p>
+          </p>
+
+          <div class="footer_card">
+            <div>
+              <%=game.critics.count %>
+              <strong>Critics</strong>
+            </div>
+            <div class="flex flex-row">
+              <%=link_to(image_tag('update_icon.png'), edit_game_path(game))%>
+              <%=link_to(image_tag('delete_icon.png'), game_path(game), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"})%>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
     <%end%>
   </p>
   <%= link_to "Back", companies_path, class: "button button--subtle" %>
