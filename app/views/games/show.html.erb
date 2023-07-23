@@ -12,7 +12,7 @@
     <div class="labels">
       <% @game.genres.each do |genre| %>
         <div class="label">
-          <%= genre.name%>  <%= link_to 'X', remove_genre_game_path(@game, genre_id: genre.id), data: { turbo_method: :delete }  %>
+          <%= genre.name%> <%if policy(Game).new? %> <%= link_to 'X', remove_genre_game_path(@game, genre_id: genre.id), data: { turbo_method: :delete }  %> <% end %>
         </div>
       <% end %>
     </div>
@@ -23,7 +23,7 @@
     <div class="labels">
       <% @game.platforms.each do |platform| %>
       <div class="label">
-        <%= platform.name%>  <%= link_to 'X', remove_platform_game_path(@game, platform_id: platform.id), data: { turbo_method: :delete }  %>
+        <%= platform.name%> <%if policy(Game).new? %> <%= link_to 'X', remove_platform_game_path(@game, platform_id: platform.id), data: { turbo_method: :delete }  %> <% end %>
       </div>
       <% end %>
     </div>
@@ -34,7 +34,7 @@
         <div class="labels">
           <% @game.involved_companies.where(developer: true).each do |ic| %>
             <div class="label">
-              <%= ic.company.name %>  <%= link_to 'X', remove_developer_game_path(@game, company_id: ic.id), data: { turbo_method: :delete } %>
+              <%= ic.company.name %> <%if policy(Game).new? %> <%= link_to 'X', remove_developer_game_path(@game, company_id: ic.id), data: { turbo_method: :delete } %> <% end %>
             </div>
           <% end %>
         </div>
@@ -45,46 +45,50 @@
         <div class="labels">
           <% @game.involved_companies.where(publisher: true).each do |ic| %>
           <div class="label">
-            <%= ic.company.name %>  <%= link_to 'X', remove_publisher_game_path(@game, company_id: ic.id), data: { turbo_method: :delete } %>
+            <%= ic.company.name %> <%if policy(Game).new? %> <%= link_to 'X', remove_publisher_game_path(@game, company_id: ic.id), data: { turbo_method: :delete } %> <% end %>
           </div>
           <% end %>
         </div>
   </div>
-
-  <div>
-    <%= form_with(url: add_genre_game_path(@game), class: "flex gap-4 flex-row mb-4 mb-4") do |form| %>
-      <div class="flex gap-4">
-        <div class="select">
-          <%= form.collection_select :genre_id, (Genre.all - @game.genres), :id, :name, { prompt: true }, { class: "select__input" } %>
+  
+  <%if policy(Game).new? %>
+    <div>
+      <%= form_with(url: add_genre_game_path(@game), class: "flex gap-4 flex-row mb-4 mb-4") do |form| %>
+        <div class="flex gap-4">
+          <div class="select">
+            <%= form.collection_select :genre_id, (Genre.all - @game.genres), :id, :name, { prompt: true }, { class: "select__input" } %>
+          </div>
         </div>
-      </div>
-      <%= form.submit "ADD GENRE", class: "button button--primary fit-content" %>
-    <% end %>
-  </div>
-  <div>
-    <%= form_with(url: add_platform_game_path(@game), class: "flex gap-4 flex-row mb-4") do |form| %>
-      <div class="flex gap-4">
-        <div class="select">
-          <%= form.collection_select :platform_id, (Platform.all - @game.platforms), :id, :name, { prompt: true }, { class: "select__input" } %>
+        <%= form.submit "ADD GENRE", class: "button button--primary fit-content" %>
+      <% end %>
+    </div>
+    <div>
+      <%= form_with(url: add_platform_game_path(@game), class: "flex gap-4 flex-row mb-4") do |form| %>
+        <div class="flex gap-4">
+          <div class="select">
+            <%= form.collection_select :platform_id, (Platform.all - @game.platforms), :id, :name, { prompt: true }, { class: "select__input" } %>
+          </div>
         </div>
-      </div>
-      <%= form.submit "ADD PLATFORM", class: "button button--primary fit-content" %>
-    <% end %>
-  </div>
+        <%= form.submit "ADD PLATFORM", class: "button button--primary fit-content" %>
+      <% end %>
+    </div>
 
 
-  <div>
-        <%= form_with(url: add_developer_game_path(@game), class: "flex gap-4 flex-row mb-4") do |form| %>
-          <%= form.collection_select :company_id, (Company.all), :id, :name, { prompt: true }, { class: "select__input" } %>
-          <%= form.submit "ADD DEVELOPER", class: "button button--primary fit-content"%>
-        <% end %>
-  </div>
-  <div>
-    <%= form_with(url: add_publisher_game_path(@game), class: "flex gap-4 flex-row mb-4") do |form| %>
-      <%= form.collection_select :company_id, (Company.all), :id, :name, { prompt: true }, { class: "select__input" } %>
-      <%= form.submit "ADD PUBLISHER", class: "button button--primary fit-content"%>
-    <% end %>
-  </div>
+    <div>
+          <%= form_with(url: add_developer_game_path(@game), class: "flex gap-4 flex-row mb-4") do |form| %>
+            <%= form.collection_select :company_id, (Company.all), :id, :name, { prompt: true }, { class: "select__input" } %>
+            <%= form.submit "ADD DEVELOPER", class: "button button--primary fit-content"%>
+          <% end %>
+    </div>
+    <div>
+      <%= form_with(url: add_publisher_game_path(@game), class: "flex gap-4 flex-row mb-4") do |form| %>
+        <%= form.collection_select :company_id, (Company.all), :id, :name, { prompt: true }, { class: "select__input" } %>
+        <%= form.submit "ADD PUBLISHER", class: "button button--primary fit-content"%>
+      <% end %>
+    </div>
+    
+  <% end %>
+  
 
   <div class="critics__tab-game mb-4">
     <h3>critics</h3>
@@ -100,7 +104,9 @@
         </div>
         <div class="critic-card__footer footer_card">
           <span class="gray-300"><%='Sent '+time_ago_in_words(critic.created_at)+' ago'%></span>
-          <%=link_to image_tag('delete_icon.png'), critic, data: { turbo_method: :delete } %>
+          <%if policy(Game).new? %>
+            <%=link_to image_tag('delete_icon.png'), critic, data: { turbo_method: :delete } %>
+          <%end%>
         </div>
       <%end%>
     </div>

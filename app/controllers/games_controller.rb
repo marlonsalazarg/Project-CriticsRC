@@ -13,15 +13,18 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    authorize @game
   end
 
   # GET /games/1/edit
   def edit
+    authorize @game
   end
 
   # POST /games
   def create
     @game = Game.new(game_params)
+    authorize @game
     if !@game.cover.attached?
       @game.cover.attach(io: File.open("app/assets/images/tlou_cover.jpg"), filename: "default_cover.jpg")
     end
@@ -35,6 +38,7 @@ class GamesController < ApplicationController
 
   # PATCH/PUT /games/1
   def update
+    authorize @game
     if @game.update(game_params)
       redirect_to @game, notice: "Game was successfully updated."
     else
@@ -44,6 +48,7 @@ class GamesController < ApplicationController
 
   # DELETE /games/1
   def destroy
+    authorize @game
     @game.destroy
     redirect_to games_url, notice: "Game was successfully destroyed.", status: :see_other
   end
@@ -54,7 +59,7 @@ class GamesController < ApplicationController
   def add_genre
     game = Game.find(params[:id])
     genre = Genre.find(params[:genre_id])
-
+    authorize game
     game.genres << genre
     redirect_to game
   end
