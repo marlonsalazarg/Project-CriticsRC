@@ -13,15 +13,18 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
+    authorize @company
   end
 
   # GET /companies/1/edit
   def edit
+    authorize @company
   end
 
   # POST /companies
   def create
     @company = Company.new(company_params)
+    authorize @company
     if !@company.cover.attached?
       @company.cover.attach(io: File.open("app/assets/images/sony_cover.png"), filename: "default_cover.png")
     end
@@ -35,6 +38,7 @@ class CompaniesController < ApplicationController
 
   # PATCH/PUT /companies/1
   def update
+    authorize @company
     if @company.update(company_params)
       redirect_to @company, notice: "Company was successfully updated."
     else
@@ -44,6 +48,7 @@ class CompaniesController < ApplicationController
 
   # DELETE /companies/1
   def destroy
+    authorize @company
     @company.destroy
     redirect_to companies_url, notice: "Company was successfully destroyed.", status: :see_other
   end

@@ -1,5 +1,7 @@
 <h1 class="mb-4">Companies</h1>
-<%= link_to "New Company", new_company_path, class: "button button--secondary button--sm fit-content mb-4" %>
+<% if policy(Company).new?%>
+  <%= link_to "New Company", new_company_path, class: "button button--secondary button--sm fit-content mb-4" %>
+<%end%>
 
 <div id="companies">
   <% @companies.each do |company| %>
