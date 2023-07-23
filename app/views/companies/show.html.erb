@@ -7,8 +7,6 @@
       <%= link_to game.name, game %>
     <%end%>
   </p>
-  <%= link_to "Edit this company", edit_company_path(@company) %> |
-  <%= link_to "Back to companies", companies_path %>
+  <%= link_to "Back", companies_path, class: "button button--subtle" %>
 
-  <%= button_to "Destroy this company", @company, method: :delete %>
 </div>

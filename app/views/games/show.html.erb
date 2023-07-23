@@ -86,7 +86,7 @@
     <% end %>
   </div>
 
-  <div class="critics__tab-game">
+  <div class="critics__tab-game mb-4">
     <h3>critics</h3>
     <%= render "critics/form", { critic: Critic.new, criticable: @game} %>
     <%@game.critics.each do |critic|%>
@@ -104,6 +104,6 @@
       <%end%>
     </div>
     
-    <%= link_to "Back", games_path%>
+    <%= link_to "Back", games_path, class: "button button--subtle"%>
   </div>
 </div>
