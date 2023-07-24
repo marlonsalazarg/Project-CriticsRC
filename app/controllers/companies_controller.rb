@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: %i[ show edit update destroy ]
+  before_action :set_company, only: %i[show edit update destroy]
 
   # GET /companies
   def index
@@ -7,8 +7,7 @@ class CompaniesController < ApplicationController
   end
 
   # GET /companies/1
-  def show
-  end
+  def show; end
 
   # GET /companies/new
   def new
@@ -25,8 +24,9 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     authorize @company
-    if !@company.cover.attached?
-      @company.cover.attach(io: File.open("app/assets/images/sony_cover.png"), filename: "default_cover.png")
+    unless @company.cover.attached?
+      @company.cover.attach(io: File.open("app/assets/images/sony_cover.png"),
+                            filename: "default_cover.png")
     end
 
     if @company.save
@@ -54,13 +54,15 @@ class CompaniesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_company
-      @company = Company.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def company_params
-      params.require(:company).permit(:name, :description, :start_date, :country, :games_count, :cover)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_company
+    @company = Company.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def company_params
+    params.require(:company).permit(:name, :description, :start_date, :country, :games_count,
+                                    :cover)
+  end
 end

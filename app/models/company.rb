@@ -9,11 +9,12 @@ class Company < ApplicationRecord
   has_many :critics, as: :criticable, dependent: :destroy
 
   has_one_attached :cover
+
   private
 
   def default_cover
     return if cover.attached?
-    
+
     cover.attach(io: File.open("app/assets/images/sony_cover.png"), filename: "default_cover.png")
   end
 end

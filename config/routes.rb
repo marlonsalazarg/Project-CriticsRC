@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # resources :users
   resources :genres
   resources :platforms
-  resources :critics, only: [:create, :destroy]
+  resources :critics, only: %i[create destroy]
   # resources :involved_companies
   resources :games do
     # /games/:id/add_genre
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :companies do
     resources :critics
   end
-  
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

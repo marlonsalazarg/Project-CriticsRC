@@ -60,7 +60,7 @@ class CriticsController < ApplicationController
     @critic = Critic.find(params[:id])
     type = @critic.criticable_type
     @critic.destroy
-    
+
     if type == "Game"
       redirect_to game_path(@critic.criticable_id), status: :see_other
     elsif type == "Company"

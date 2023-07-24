@@ -37,7 +37,7 @@ class Game < ApplicationRecord
 
   def default_cover
     return if cover.attached?
-    
+
     cover.attach(io: File.open("app/assets/images/tlou_cover.jpg"), filename: "default_cover.jpg")
   end
 end
