@@ -11,6 +11,11 @@ Game.destroy_all
 Company.destroy_all
 Genre.destroy_all
 Platform.destroy_all
+User.destroy_all
+
+# Create User Admin
+
+User.create(email: "admin@mail.com", password: "123456", password_confirmation: "123456", role: 0, username: "admin")
 
 
 
