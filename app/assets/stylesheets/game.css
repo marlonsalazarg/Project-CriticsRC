@@ -82,7 +82,43 @@
   text-shadow: 1px 1px 1px var(--gray-400);
 }
 
-/* COMMENTS CAMBIAR DE RUTA */
+
 .critic-card__footer{
   justify-content: space-between;
+}
+
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  /* max-width: 400px; */
+  font-family: sans-serif;
+}
+
+.tabs__label {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.tabs__radio {
+  display: none;
+}
+
+.tabs__content {
+  order: 1;
+  width: 100%;
+  border-bottom: 3px solid #dddddd;
+  line-height: 1.5;
+  font-size: 0.9em;
+  display: none;
+}
+
+.tabs__radio:checked + .tabs__label {
+  font-weight: bold;
+  color: var(--gray-500);
+  border-bottom: 4px solid var(--primary-500);
+}
+
+.tabs__radio:checked + .tabs__label + .tabs__content {
+  display: initial;
 }
