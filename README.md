@@ -1,24 +1,50 @@
-# README
+# Project-CriticsRC
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+App de reseñas de videojuegos y compañías optimizada para dispositivos móviles.
 
-Things you may want to cover:
+## Requisitos
+* **Ruby version:** 3.1.2
+* **Base de datos:** PostgreSQL
+* **Gestor de versiones:** rbenv (recomendado)
 
-* Ruby version
+## Configuración del Entorno
 
-* System dependencies
+Si usas `rbenv` en macOS, asegúrate de tenerlo inicializado en tu terminal para que reconozca la versión correcta de Ruby automáticamente:
 
-* Configuration
+```bash
+# Agregar rbenv al inicio de tu shell (Zsh)
+echo 'eval "$(rbenv init -)"' >> ~/.zshrc
+source ~/.zshrc
+```
 
-* Database creation
+## Instalación y Preparación
 
-* Database initialization
+1. **Instalar dependencias:**
+   ```bash
+   bundle install
+   ```
 
-* How to run the test suite
+2. **Preparar la base de datos:**
+   ```bash
+   bin/rails db:prepare db:seed
+   ```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Cómo iniciar el servidor
 
-* Deployment instructions
+Para iniciar el servidor de desarrollo, utiliza el binstub de rails:
 
-* ...
+```bash
+bin/rails server
+```
+
+La aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
+
+## Troubleshooting
+
+Si recibes el error "A server is already running", limpia el archivo de proceso:
+```bash
+rm tmp/pids/server.pid
+```
+
+---
+*Build with ♥ by Marlon Salazar*
