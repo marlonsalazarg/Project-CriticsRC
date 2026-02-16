@@ -39,7 +39,7 @@
                 </p>
                 <p>
                   <%# <strong>Summary:</strong> %>
-                  <p class="content-sm"><%= truncate(game.summary, length: 100) %></p>
+                  <p class="content-xs"><%= truncate(game.summary, length: 100) %></p>
                 </p>
 
                 <div class="footer_card">
@@ -65,25 +65,24 @@
       <label for="tab2" class="tabs__label">Critics(<%= @company.critics.count%>)</label>
       <div class="tabs__content">
           <%= render "critics/form", { critic: Critic.new, criticable: @company} %>
-          <%@company.critics.each do |critic|%>
+          <% @company.critics.each do |critic| %>
             <div class="comment-card">
               <div class="comment-card__details">
                 <hr>
-                <h4><%=critic.title%> </h4>
-                <span>by <%=critic.user.username%></span> <br>
-                <%=critic.body%>
+                <h4><%= critic.title %></h4>
+                <span>by <%= critic.user.username %></span> <br>
+                <%= critic.body %>
               </div>
               <div class="critic-card__footer footer_card">
-                <span class="gray-300"><%='Sent '+time_ago_in_words(critic.created_at)+' ago'%></span>
-                <% if policy(Company).new?%>
-                  <%=link_to image_tag('delete_icon.png'), critic, data: { turbo_method: :delete } %>
-                <%end%>
+                <span class="gray-300"><%= 'Sent ' + time_ago_in_words(critic.created_at) + ' ago' %></span>
+                <% if policy(Company).new? %>
+                  <%= link_to image_tag('delete_icon.png'), critic, data: { turbo_method: :delete } %>
+                <% end %>
               </div>
-            <%end%>
-          </div>
+            </div>
+          <% end %>
       </div>
     </div>
-  </div>
   <%= link_to "Back", companies_path, class: "button button--subtle" %>
 
 </div>

@@ -1,10 +1,8 @@
 .game-card {
   display: flex;
   flex-wrap: nowrap;
-  border-radius: 8px;
-  box-shadow: var(--shadow-md);
-  gap: 1em;
-  height: 200px;
+  min-height: 160px;
+  background-color: #FFFFFF;
 }
 
 .card-list {
@@ -13,15 +11,24 @@
   gap: 2em;
 }
 
+.game-card__name{
+  width: calc(100% - 52px);
+}
+
 .game-card__content {
-  padding: 0.5em 1em;
-  width: 70%;
+  padding: 0.5em;
+  width: calc(100% - 120px);
+}
+
+.game-card__release-date {
+  color: var(--gray-300);
 }
 
 .header_card {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 0.625em;
 }
 
 
@@ -30,10 +37,13 @@
   justify-content: center;
   height: 100%;
   width: 100%;
+  object-fit: cover;
+  object-position: top left;
 }
 
 .cover_game-widht{
-  width: 30%;
+  width: 120px;
+  height: 160px;
 }
 
 .show_top{
@@ -45,19 +55,23 @@
 .rating {
   display: flex;
   justify-content: center;
+  color: #FFFFFF;
   align-items: center;
-  border-radius: 5px;
-  background-color: var(--gray-200);
-  width: 34px;
-  height: 24px;
+  border-radius: 4px;
+  background-color: var(--gray-300);
+  padding: 4px;
   text-align: center;
-  font-size: 16px;
+  width: 42px;
 }
 
 .footer_card{
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.game-card__count{
+  color: var(--gray-300);
 }
 
 .footer_card img{

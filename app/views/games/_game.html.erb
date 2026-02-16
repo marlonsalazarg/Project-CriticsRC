@@ -1,6 +1,6 @@
 <div id="<%= dom_id game %>">
 <div class="card-list">
-  <div class="game-card mb-4 bg-gray-100">
+  <div class="game-card mb-4">
     <% if game.cover.attached? %>
     <div class="cover_game-widht">
       <%= image_tag game.cover, alt:"game cover", class: "game-card__image" %>
@@ -8,24 +8,24 @@
     <% end %>
     <div class="game-card__content">
       <div class="header_card">
-        <h4>
+        <h4 class="game-card__name content-lg fw-400">
           <%= link_to game.name, game %>
         </h4>
-        <span class="content-lg rating"><%=  game.rating  %></span>
+        <span class="content-base rating"><%=  game.rating  %></span>
       </div>
       
-      <p>
+      <p class="game-card__release-date content-xs mb-2">
         <%= game.release_date.strftime('%Y') %>
       </p>
-      <p>
+      <p class="content-xs">
         <%# <strong>Summary:</strong> %>
-        <p class="content-sm"><%= truncate(game.summary, length: 100) %></p>
+        <p class="content-xs mb-2"><%= truncate(game.summary, length: 100) %></p>
       </p>
 
       <div class="footer_card">
-        <div>
+        <div class="game-card__count content-xs">
           <%=game.critics.count %>
-          <strong>Critics</strong>
+          <span>Critics</span>
         </div>
         <div class="flex flex-row">
           <% if policy(Game).update?%>
