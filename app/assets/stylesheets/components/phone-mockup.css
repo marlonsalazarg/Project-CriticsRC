@@ -1,0 +1,159 @@
+/* Phone Mockup - Desktop shows phone frame, mobile shows full app */
+
+/* Base - Mobile first (full screen app) */
+.desktop-wrapper {
+  display: block;
+}
+
+.phone-frame {
+  display: contents;
+}
+
+.phone-screen {
+  display: contents;
+}
+
+.desktop-branding {
+  display: none;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--gray-100);
+}
+
+.app-container .section {
+  flex: 1;
+}
+
+/* Desktop - Show phone mockup */
+@media (min-width: 481px) {
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  .desktop-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 40px 20px;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
+  }
+
+  .desktop-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Phone frame */
+  .phone-frame {
+    display: block;
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background: #1a1a1a;
+    border-radius: 50px;
+    padding: 12px;
+    box-shadow:
+      0 0 0 3px #2a2a2a,
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 100px rgba(120, 119, 198, 0.2);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  /* Phone notch */
+  .phone-frame::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 30px;
+    background: #1a1a1a;
+    border-radius: 0 0 20px 20px;
+    z-index: 100;
+  }
+
+  /* Phone screen - scrollable container */
+  .phone-screen {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 40px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar styling */
+  .phone-screen::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .phone-screen::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .phone-screen::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+  }
+
+  /* App container */
+  .app-container {
+    min-height: 100%;
+  }
+
+  /* Add padding top for notch */
+  .phone-screen header {
+    padding-top: 35px;
+  }
+
+  /* Desktop branding text */
+  .desktop-branding {
+    display: none;
+    margin-left: 50px;
+    max-width: 300px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  @media (min-width: 720px) {
+    .desktop-branding {
+      display: block;
+    }
+  }
+
+  .desktop-branding h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+    text-align: left;
+  }
+
+  .desktop-branding p {
+    font-size: 16px;
+    opacity: 0.8;
+    text-align: left;
+    line-height: 1.5;
+  }
+}
